@@ -1,4 +1,5 @@
 @file:JvmName("CCC")
+
 package com.example.core.utils
 
 import android.content.res.Resources
@@ -8,14 +9,16 @@ import com.example.core.BaseApplication
 
 private val displayMetrics = Resources.getSystem().displayMetrics
 
-fun dp2px(dp: Float): Float {
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, displayMetrics)
+fun Float.dp2px(): Float {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, displayMetrics)
 }
 
-fun toast(string: String) {
-    toast(string, Toast.LENGTH_SHORT)
-}
 
+/**
+ * 即可以使用单参数，也可使用多参数
+ * JvmOverloads：让Java调用时，也可以看见多个重写方法
+ */
+@JvmOverloads
 fun toast(string: String, duration: Int = Toast.LENGTH_SHORT) {
-    Toast.makeText(BaseApplication.currentApplication(), string, duration).show()
+    Toast.makeText(BaseApplication.currentApplication, string, duration).show()
 }
